@@ -32,10 +32,12 @@ public class TestSearchFlights {
 		btnNoThanks.click();
 		Thread.sleep(3000);		
 		
+		//From
 		WebElement txtFrom=driver.findElement(By.xpath(".//*[@id='source']"));
 		txtFrom.sendKeys("Bang");
 		screen.click(selectBng);
 		
+		//To
 		WebElement txtTo=driver.findElement(By.xpath(".//*[@id='destination']"));
 		txtTo.sendKeys("Goa");
 		screen.click(selectGoa);
