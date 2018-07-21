@@ -1,13 +1,12 @@
 package com.via.testcases;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.sikuli.script.FindFailed;
-import org.sikuli.script.Pattern;
-import org.sikuli.script.Screen;
 
 public class TestSearchFlights {
 	
@@ -15,11 +14,6 @@ public class TestSearchFlights {
 
 	public static void main(String[] args) throws InterruptedException, FindFailed {
 		
-		
-		//Sikuli code
-		Screen screen =new Screen();
-		Pattern selectBng=new Pattern("C:\\Workspace\\InViaCom\\sikuli_images\\Screenshot_1.png");
-		Pattern selectGoa=new Pattern("C:\\Workspace\\InViaCom\\sikuli_images\\Screenshot_2.png");
 		
 		//Selenium Code
 		System.setProperty("webdriver.chrome.driver", "C:\\Softwares\\chromedriver.exe");
@@ -34,23 +28,31 @@ public class TestSearchFlights {
 		
 		//From
 		WebElement txtFrom=driver.findElement(By.xpath(".//*[@id='source']"));
-		txtFrom.sendKeys("Bang");
-		screen.click(selectBng);
+		txtFrom.sendKeys("Bangalore");
+		driver.findElement(By.xpath(".//ul[@id='ui-id-1']/li/span[contains(text(),'Bangalore')]")).click();
+		Thread.sleep(2000);
 		
 		//To
 		WebElement txtTo=driver.findElement(By.xpath(".//*[@id='destination']"));
 		txtTo.sendKeys("Goa");
-		screen.click(selectGoa);
+		driver.findElement(By.xpath(".//ul[@id='ui-id-2']/li/span[contains(text(),'Goa')]")).click();
+		Thread.sleep(5000);
 		
 		//departure date
-		Thread.sleep(3000);	
-		driver.findElement(By.xpath(".//*[@id='depart-cal']/div[3]/div[2]/div[4]/div[6]")).click();		
+		//Thread.sleep(3000);	
+		//driver.findElement(By.xpath(".//*[@id='depart-cal']/div[3]/div[2]/div[4]/div[7]")).click();		
 		
-		//Return Date
-		Thread.sleep(3000);	
-		WebElement dateRet=driver.findElement(By.xpath(".//*[@id='round-trip-panel']/div[5]"));
-		dateRet.click();
-		driver.findElement(By.xpath(".//*[@id='return-cal']/div[3]/div[2]/div[4]/div[7]")).click();
+		//Departure calender code
+		List<WebElement> allDatesJuly=driver.findElements(By.xpath(".//*[@id='depart-cal']/div[3]/div[2]/descendant::div"));
+		for (WebElement date: allDatesJuly) {           
+            if (date.getCssValue("data-date").equals("21")) {
+            	date.click();
+                break;
+            }
+        }
+		
+		//SearchBtn
+		driver.findElement(By.xpath(".//*[@id='search-flight-btn']")).click();
 	}
 
 }
