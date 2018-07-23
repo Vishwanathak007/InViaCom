@@ -18,25 +18,34 @@ public class TestMakeMyTrip {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get("https://www.makemytrip.com/");
+		System.out.println("Website Opened...");
 		
 		//From
         driver.findElement(By.xpath(".//*[@id='hp-widget__sfrom']")).click();
         Thread.sleep(3000);        
         driver.findElement(By.xpath(".//ul[@id='ui-id-1']/li/div/p/span[contains(text(),'Bangalore')]")).click();
+        System.out.println("From journey Selected...");
         
         //To
         driver.findElement(By.xpath(".//*[@id='hp-widget__sTo']")).click();
         Thread.sleep(3000);  
         driver.findElement(By.xpath(".//ul[@id='ui-id-2']/li/div/p/span[text()='Kolkata, India ']")).click();
+        System.out.println("To Journey Selected...");
         
         //Date Depart
-        List<WebElement> allDatesJuly=driver.findElements(By.xpath(".//*[@id='dp1532169396467']/descendant::div[@class='ui-datepicker-group ui-datepicker-group-first']/descendant::td/a"));
+        List<WebElement> allDatesJuly=driver.findElements(By.xpath(".//*[@class='dateFilter hasDatepicker']/descendant::div[@class='ui-datepicker-group ui-datepicker-group-first']/descendant::td"));
+        System.out.println("Select Depart date...");
         for (WebElement date: allDatesJuly) {           
-            if (date.getText().equals("22")) {
+            if (date.getText().contains("23")) {
+            	 System.out.println("Selected the Depart date...");
             	date.click();
                 break;
             }
         }
+        
+        Thread.sleep(2000);
+        WebElement searchBtn=driver.findElement(By.xpath(".//*[@id='searchBtn']"));
+        searchBtn.click();
 	}
 
 }

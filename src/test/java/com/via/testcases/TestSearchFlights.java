@@ -31,24 +31,30 @@ public class TestSearchFlights {
 		txtFrom.sendKeys("Bangalore");
 		driver.findElement(By.xpath(".//ul[@id='ui-id-1']/li/span[contains(text(),'Bangalore')]")).click();
 		Thread.sleep(2000);
+		System.out.println("From Journey Selected...");
 		
 		//To
 		WebElement txtTo=driver.findElement(By.xpath(".//*[@id='destination']"));
 		txtTo.sendKeys("Goa");
 		driver.findElement(By.xpath(".//ul[@id='ui-id-2']/li/span[contains(text(),'Goa')]")).click();
 		Thread.sleep(5000);
+		System.out.println("To Journey Selected...");
 		
 		//departure date
 		//Thread.sleep(3000);	
 		//driver.findElement(By.xpath(".//*[@id='depart-cal']/div[3]/div[2]/div[4]/div[7]")).click();		
 		
 		//Departure calender code
-		List<WebElement> allDatesJuly=driver.findElements(By.xpath(".//*[@id='depart-cal']/div[3]/div[2]/descendant::div"));
+		List<WebElement> allDatesJuly=driver.findElements(By.xpath(".//*[@id='depart-cal']/div[3]/div[2]/div[@class='vc-row']/child::div"));
+		System.out.println("Select Depart date...");
 		for (WebElement date: allDatesJuly) {           
-            if (date.getCssValue("data-date").equals("21")) {
+            if (date.getText().contains("23")){
+            	System.out.println("Depart date selected..");
             	date.click();
+            	System.out.println("Depart date is Clicked...");
                 break;
             }
+           
         }
 		
 		//SearchBtn
