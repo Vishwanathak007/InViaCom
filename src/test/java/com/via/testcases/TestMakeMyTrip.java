@@ -36,8 +36,8 @@ public class TestMakeMyTrip {
         List<WebElement> allDatesJuly=driver.findElements(By.xpath(".//*[@class='dateFilter hasDatepicker']/descendant::div[@class='ui-datepicker-group ui-datepicker-group-first']/descendant::td"));
         System.out.println("Select Depart date...");
         for (WebElement date: allDatesJuly) {           
-            if (date.getText().contains("23")) {
-            	 System.out.println("Selected the Depart date...");
+            if (date.getText().contains("27")) {
+            	System.out.println("Selected the Depart date..."+date.getText());
             	date.click();
                 break;
             }

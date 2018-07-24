@@ -8,12 +8,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.sikuli.script.FindFailed;
 
-public class TestSearchFlights {
+public class TestInVia {
 	
 	static WebDriver driver;
 
-	public static void main(String[] args) throws InterruptedException, FindFailed {
-		
+	public static void main(String[] args) throws InterruptedException, FindFailed {		
 		
 		//Selenium Code
 		System.setProperty("webdriver.chrome.driver", "C:\\Softwares\\chromedriver.exe");
@@ -38,18 +37,14 @@ public class TestSearchFlights {
 		txtTo.sendKeys("Goa");
 		driver.findElement(By.xpath(".//ul[@id='ui-id-2']/li/span[contains(text(),'Goa')]")).click();
 		Thread.sleep(5000);
-		System.out.println("To Journey Selected...");
-		
-		//departure date
-		//Thread.sleep(3000);	
-		//driver.findElement(By.xpath(".//*[@id='depart-cal']/div[3]/div[2]/div[4]/div[7]")).click();		
+		System.out.println("To Journey Selected...");			
 		
 		//Departure calender code
 		List<WebElement> allDatesJuly=driver.findElements(By.xpath(".//*[@id='depart-cal']/div[3]/div[2]/div[@class='vc-row']/child::div"));
 		System.out.println("Select Depart date...");
 		for (WebElement date: allDatesJuly) {           
-            if (date.getText().contains("23")){
-            	System.out.println("Depart date selected..");
+            if (date.getText().contains("27")){
+            	System.out.println("Depart date selected as..."+date.getText());
             	date.click();
             	System.out.println("Depart date is Clicked...");
                 break;
