@@ -23,17 +23,17 @@ public class TestMakeMyTrip {
 		//From
         driver.findElement(By.xpath(".//*[@id='hp-widget__sfrom']")).click();
         Thread.sleep(3000);        
-        driver.findElement(By.xpath(".//ul[@id='ui-id-1']/li/div/p/span[contains(text(),'Bangalore')]")).click();
+        driver.findElement(By.xpath(".//ul[@id='ui-id-1']//span[contains(text(),'Bangalore')]")).click();
         System.out.println("From journey Selected...");
         
         //To
         driver.findElement(By.xpath(".//*[@id='hp-widget__sTo']")).click();
         Thread.sleep(3000);  
-        driver.findElement(By.xpath(".//ul[@id='ui-id-2']/li/div/p/span[text()='Kolkata, India ']")).click();
+        driver.findElement(By.xpath(".//ul[@id='ui-id-2']//span[text()='Kolkata, India ']")).click();
         System.out.println("To Journey Selected...");
         
         //Date Depart
-        List<WebElement> allDatesJuly=driver.findElements(By.xpath(".//*[@class='dateFilter hasDatepicker']/descendant::div[@class='ui-datepicker-group ui-datepicker-group-first']/descendant::td"));
+        List<WebElement> allDatesJuly=driver.findElements(By.xpath(".//div[@class='ui-datepicker-group ui-datepicker-group-first']//td"));
         System.out.println("Select Depart date...");
         for (WebElement date: allDatesJuly) {           
             if (date.getText().contains("27")) {
